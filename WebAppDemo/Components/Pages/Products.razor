@@ -1,0 +1,46 @@
+﻿@page "/products"
+@using WebAppDemo.Models
+@using WebAppDemo.Services
+@rendermode InteractiveServer
+@inject IProductsService _productService
+<h3>Products</h3>
+
+@if (_products == null) 
+{
+    <h2>Error handling</h2>
+}
+else
+{
+    <div>
+        @foreach (var product in _products) 
+        {
+            <ProductRow Product="product"></ProductRow>
+        }
+    </div>
+}
+<div>
+    <input @bind="_name"></input>
+    <input @bind="_description"></input>
+    <button @onclick="SubmitNewProduct">Add new product</button>
+</div>
+
+@code {
+    private List<Product>? _products;
+
+    private string? _name;
+    private string? _description;
+
+    protected override Task OnInitializedAsync()
+    {
+        _products = _productService.GetProducts();
+        return base.OnInitializedAsync();
+    }
+
+    private void SubmitNewProduct() 
+    {
+        _productService.AddProdcut(new Product() { Name = _name, Description = _description });
+        _name = String.Empty;
+        _description = String.Empty;
+        _products = _productService.GetProducts();
+    }
+}

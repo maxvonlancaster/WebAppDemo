@@ -1,0 +1,11 @@
+﻿@using WebAppDemo.Models;
+
+<div>
+    <p>@Product?.Name </p>
+    <p>@Product?.Description </p>
+</div>
+
+@code {
+    [Parameter]
+    public Product? Product { get; set; }
+}
