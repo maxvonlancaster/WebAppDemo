@@ -3,9 +3,12 @@
 <div>
     <p>@Product?.Name </p>
     <p>@Product?.Description </p>
+    <NavLink href=@Link>Go to item</NavLink>
 </div>
 
 @code {
     [Parameter]
     public Product? Product { get; set; }
+
+    public string Link => "/products/" + Product?.Id;
 }

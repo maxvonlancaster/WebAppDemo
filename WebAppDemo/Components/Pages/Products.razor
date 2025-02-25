@@ -3,6 +3,7 @@
 @using WebAppDemo.Services
 @rendermode InteractiveServer
 @inject IProductsService _productService
+@inject IJSRuntime JS
 <h3>Products</h3>
 
 @if (_products == null) 
@@ -22,6 +23,8 @@ else
     <input @bind="_name"></input>
     <input @bind="_description"></input>
     <button @onclick="SubmitNewProduct">Add new product</button>
+    <button @onclick="SayHello">Say Hello</button>
+    <button onclick="callCsharp()">Call DotNet</button>
 </div>
 
 @code {
@@ -42,5 +45,10 @@ else
         _name = String.Empty;
         _description = String.Empty;
         _products = _productService.GetProducts();
+    }
+
+    private async Task SayHello() 
+    {
+        await JS.InvokeVoidAsync("helloFromJavaScript", args: "Oleg");
     }
 }

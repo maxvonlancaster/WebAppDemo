@@ -1,0 +1,26 @@
+﻿@page "/products/{Id:int}"
+@using WebAppDemo.Models
+@using WebAppDemo.Services
+@inject IProductsService _productsService
+
+<h3>ProductPage</h3>
+
+<p>@_product?.Name</p>
+
+<p>@_product?.Description</p>
+
+<p>@_product?.Price</p>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Product? _product;
+
+    protected override Task OnInitializedAsync()
+    {
+        _product = _productsService.GetProductById(Id);
+        return base.OnInitializedAsync();
+    }
+}

@@ -1,4 +1,5 @@
-﻿using WebAppDemo.Models;
+﻿using Microsoft.JSInterop;
+using WebAppDemo.Models;
 
 namespace WebAppDemo.Services;
 
@@ -34,5 +35,11 @@ public class ProductsService : IProductsService
     public List<Product> GetProducts()
     {
         return _products;
+    }
+
+    [JSInvokable("GetProductJS")]
+    public static Product GetProductJS(int id) 
+    { 
+        return new Product() { Id = id, Name = "Name" };
     }
 }

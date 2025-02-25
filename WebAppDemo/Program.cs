@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddSingleton<IProductsService, ProductsService>();
+builder.Services.AddSingleton<IProductsService, ProductsService>(); // transient scoped
 
 var app = builder.Build();
 
