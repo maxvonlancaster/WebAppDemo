@@ -1,0 +1,13 @@
+.container{
+  margin: 20px auto;
+  text-align: center;
+  max-width: 400px;
+  border-radius: 5px;
+  background: lightblue;
+}
+
+li{
+  padding: 10px;
+  background-color: aquamarine;
+  margin: 5px;
+}
