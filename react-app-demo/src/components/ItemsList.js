@@ -5,7 +5,7 @@ const ItemsList = props => {
 
     return (
         <ul className='items-list'>
-          {props.items.map((item) => {return <li>{item.name}</li>})}
+          {props.items.map((item) => {return <li>{item.name}, {item.description}</li>})}
       </ul>
     )
 }

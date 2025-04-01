@@ -3,13 +3,15 @@ import React, {useState} from "react";
 const AddItem = props => {
     const [val, valChanged] = useState("");
 
-    const submitItem = event => {
+    const submitItem = async (event) => {
         // event.preventDefault();
         const newItem = {
-            id: 1,
-            name: val
+            name: val,
+            description: val,
+            shippingDate: Date.UTC(),
+            categoryId: 2
         }
-        props.onAddItem(newItem);
+        await props.onAddItem(newItem);
         valChanged("")
     }
 

@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebAppDemo.REST.BLL.Interfaces;
+using WebAppDemo.REST.DAL.Entities;
+using WebAppDemo.REST.Models;
 
 namespace WebAppDemo.REST.Controllers;
 
@@ -15,5 +16,15 @@ public class ProductsController : ControllerBase
         _productsService = productsService;
     }
 
+    [HttpPost(Name = "AddProduct")]
+    public async Task<Product> AddProduct(ProductDto productDto) 
+    {
+        return await _productsService.AddProdcut(productDto.ToProductEntity());
+    }
 
+    [HttpGet(Name = "GetProducts")]
+    public async Task<IEnumerable<Product>> GetProductsAsync(int skip, int take) 
+    {
+        return await _productsService.GetProducts(skip, take);
+    }
 }

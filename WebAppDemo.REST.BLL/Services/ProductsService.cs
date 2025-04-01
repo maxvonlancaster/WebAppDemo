@@ -25,8 +25,10 @@ public class ProductsService : IProductsService
 
     public async Task<IEnumerable<Product>> GetProducts(int skip, int take) 
     {
-        var result = await _context.Products
-            .Skip(skip).Take(take).ToListAsync();
+        var result = await _context.Products            
+            .Skip(skip).Take(take)
+            .Include(p => p.Category)
+            .ToListAsync();
         return result;
     }
 }
